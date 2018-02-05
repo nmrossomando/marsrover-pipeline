@@ -35,7 +35,7 @@ NSYT = {'raws_prefix' : 'Coming Sooner',
 		'image_manifest' : 'Coming Sooner',
 		'name' : 'InSight',
 		'mission' : 'nsyt',
-		'scid' : '189',
+		'scid' : 189,
 		'spacecraft' : 'NSYT'}
 
 # Reserving! Update this in a few years...
