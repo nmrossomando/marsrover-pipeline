@@ -1,0 +1,5 @@
+# Python stuff (TM) #
+*.pyc
+__pycache__/
+src/*.pyc
+src/__pycache__/
