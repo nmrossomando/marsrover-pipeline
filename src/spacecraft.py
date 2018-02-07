@@ -9,7 +9,8 @@ MERB = {'raws_prefix' : 'http://merpublic.s3.amazonaws.com/oss/merb/',
 		'name' : 'Opportunity',
 		'mission' : 'merb',
 		'scid' : 253,
-		'spacecraft' : 'MER1'}
+		'spacecraft' : 'MER1',
+		'instruments' : ['pcam','ncam','fcam','rcam','mi','course_plot']}
 
 # Spirit
 # :sadparrot:
@@ -18,7 +19,8 @@ MERA = {'raws_prefix' : 'http://merpublic.s3.amazonaws.com/oss/mera/',
 		'name' : 'Spirit',
 		'mission' : 'mera',
 		'scid' : 254,
-		'spacecraft' : 'MER2'}
+		'spacecraft' : 'MER2',
+		'instruments' : ['pcam','ncam','fcam','rcam','mi','course_plot']}
 
 # That other rover
 # Okay, okay, calm down MSL folks...
@@ -28,7 +30,8 @@ MSL =  {'raws_prefix' : 'http://msl-raws.s3.amazonaws.com/',
 		'name' : 'Curiosity',
 		'mission' : 'msl',
 		'scid' : 76,
-		'spacecraft' : 'MSL'}
+		'spacecraft' : 'MSL',
+		'instruments' : ['ccam','fcam','rcam','ncam','mastcam_left','mastcam_right','mahli','mardi']}
 
 # I have no idea if we'll be able to incorporate INSIGHT, but reserving.
 NSYT = {'raws_prefix' : 'Coming Sooner',
@@ -36,7 +39,8 @@ NSYT = {'raws_prefix' : 'Coming Sooner',
 		'name' : 'InSight',
 		'mission' : 'nsyt',
 		'scid' : 189,
-		'spacecraft' : 'NSYT'}
+		'spacecraft' : 'NSYT',
+		'instruments' : ['idc','icc']} # Instruments correct, naming notional!
 
 # Reserving! Update this in a few years...
 # And yes, we know the scid already.
@@ -45,7 +49,8 @@ M20 =  {'raws_prefix' : 'Coming Soon(TM)',
 		'name' : 'MARS-2020',
 		'mission' : 'm20',
 		'scid' : 168,
-		'spacecraft' : 'M2020'}
+		'spacecraft' : 'M2020',
+		'instruments' : []} # Many cams, 2 years to fill in.
 
 if __name__ == '__main__':
 	print("TESTING MODULE: spacecraft.py")

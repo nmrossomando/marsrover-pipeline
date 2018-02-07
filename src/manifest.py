@@ -86,7 +86,7 @@ class Manifest:
 	# Return a dictionary of metadata for a given sol - really just the bit of json for that sol.
 	# No good way to do except iterating...
 	# Also, since we know some sols are missing (grrr...), handle that.
-	def getSolMetadata(solNum):
+	def getSolMetadata(self,solNum):
 		for sol in self.remoteMf['sols']:
 			if sol['sol'] == solNum:
 				return sol
@@ -102,5 +102,10 @@ if __name__ == "__main__":
 	print(m.checkManifestTimes())
 	m.findRecentSols()
 	print(m.recentSols)
+	m.findUpdatedSols()
+	print(m.toUpdate)
+	print(m.getSolMetadata(4990))
+	print(m.getSolMetadata(4991))
+	print(m.replaceManifest())
 	print("DONE.")
 
