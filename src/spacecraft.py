@@ -10,7 +10,7 @@ MERB = {'raws_prefix' : 'http://merpublic.s3.amazonaws.com/oss/merb/',
 		'mission' : 'merb',
 		'scid' : 253,
 		'spacecraft' : 'MER1',
-		'instruments' : ['pcam','ncam','fcam','rcam','mi','course_plot']}
+		'instruments' : {'pancam' : 'pcam_images','navcam' : 'ncam_images','fhaz' : 'fcam_images','rhaz' : 'rcam_images','mi' : 'mi_images','mobidd' : 'course_plot_images'}}
 
 # Spirit
 # :sadparrot:
@@ -20,7 +20,7 @@ MERA = {'raws_prefix' : 'http://merpublic.s3.amazonaws.com/oss/mera/',
 		'mission' : 'mera',
 		'scid' : 254,
 		'spacecraft' : 'MER2',
-		'instruments' : ['pcam','ncam','fcam','rcam','mi','course_plot']}
+		'instruments' : {'pancam' : 'pcam_images','navcam' : 'ncam_images','fhaz' : 'fcam_images','rhaz' : 'rcam_images','mi' : 'mi_images','mobidd' : 'course_plot_images'}}
 
 # That other rover
 # Okay, okay, calm down MSL folks...
@@ -31,7 +31,7 @@ MSL =  {'raws_prefix' : 'http://msl-raws.s3.amazonaws.com/',
 		'mission' : 'msl',
 		'scid' : 76,
 		'spacecraft' : 'MSL',
-		'instruments' : ['ccam','fcam','rcam','ncam','mastcam_left','mastcam_right','mahli','mardi']}
+		'instruments' : {'chemcam' : 'ccam_images','fhaz' : 'fcam_images','rhaz' : 'rcam_images','navcam' : 'ncam_images','mastcam_left' : 'mastcam_left_images','mastcam_right' : 'mastcam_right_images','mahli' : 'mahli_images','mardi' : 'mardi_images'}}
 
 # I have no idea if we'll be able to incorporate INSIGHT, but reserving.
 NSYT = {'raws_prefix' : 'Coming Sooner',
@@ -40,7 +40,7 @@ NSYT = {'raws_prefix' : 'Coming Sooner',
 		'mission' : 'nsyt',
 		'scid' : 189,
 		'spacecraft' : 'NSYT',
-		'instruments' : ['idc','icc']} # Instruments correct, naming notional!
+		'instruments' : {'idc' : 'idc','icc' : 'icc'}} # Instruments correct, naming notional!
 
 # Reserving! Update this in a few years...
 # And yes, we know the scid already.
@@ -50,7 +50,7 @@ M20 =  {'raws_prefix' : 'Coming Soon(TM)',
 		'mission' : 'm20',
 		'scid' : 168,
 		'spacecraft' : 'M2020',
-		'instruments' : []} # Many cams, 2 years to fill in.
+		'instruments' : {}} # Many cams, 2 years to fill in.
 
 if __name__ == '__main__':
 	print("TESTING MODULE: spacecraft.py")

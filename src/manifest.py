@@ -87,9 +87,15 @@ class Manifest:
 	# No good way to do except iterating...
 	# Also, since we know some sols are missing (grrr...), handle that.
 	def getSolMetadata(self,solNum):
-		for sol in self.remoteMf['sols']:
-			if sol['sol'] == solNum:
-				return sol
+		# Check local if no remote, otherwise use remote:
+		if self.remoteMf is None:
+			for sol in self.localMf['sols']:
+				if sol['sol'] == solNum:
+					return sol
+		else:
+			for sol in self.remoteMf['sols']:
+				if sol['sol'] == solNum:
+					return sol
 
 		return {} # If not in data, return empty dict.
 
