@@ -7,7 +7,9 @@
 
 # Library imports
 import os
+import json
 import requests
+import boto3 # AWS
 
 # marsrover-pipeline imports
 import spacecraft
@@ -63,6 +65,13 @@ class SolMetadata:
 	def getInstrumentObs(self,inst):
 		return self.imageMd[self.sc['instruments'][inst]]
 
+	# Push the manifest to our s3 bucket
+	# Should be able to do this without intermediate file by following method.
+	def putSolOnBucket(self):
+		s3 = boto3.resource('s3')
+		dataBucket = s3.Object('marsroversio.data','latest_sols/' + self.sc['mission'] + '/images_sol' + str(self.masterMd['sol']) + '.json')
+		dataBucket.put(Body=json.dumps(self.imageMd))
+
 if __name__ == '__main__':
 	print("TESTING MODULE: sol_metadata.py")
 	l = SolMetadata(spacecraft.MERB,2000) # In local MF at test time
@@ -83,6 +92,7 @@ if __name__ == '__main__':
 	print(r.checkManifestTimes())
 	print(r.getNumImages())
 	print(r.getInstrumentObs('navcam'))
+	r.putSolOnBucket()
 	x = SolMetadata(spacecraft.MERA,4000) # Poor Spirit died @ 2209 so this will fail.
 	print("Failure:")
 	print(x.sc)
