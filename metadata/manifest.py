@@ -10,7 +10,7 @@ import json
 import requests
 
 # marsrover-pipline imports
-import spacecraft
+import mission.spacecraft as spacecraft
 import util
 
 class Manifest:

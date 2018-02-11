@@ -6,13 +6,12 @@
 #
 
 # Library imports
-import os
 import json
 import requests
 import boto3 # AWS
 
 # marsrover-pipeline imports
-import spacecraft
+import missions.spacecraft as spacecraft
 import manifest
 import util
 

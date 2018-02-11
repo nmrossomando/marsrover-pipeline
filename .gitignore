@@ -1,5 +1,5 @@
 # Python stuff (TM) #
 *.pyc
 __pycache__/
-src/*.pyc
-src/__pycache__/
+*/*.pyc
+*/__pycache__/
