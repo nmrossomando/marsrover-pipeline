@@ -12,8 +12,8 @@ import boto3 # AWS
 
 # marsrover-pipeline imports
 import missions.spacecraft as spacecraft
-import manifest
-import util
+import metadata.manifest as manifest
+import metadata.util as util
 
 class SolMetadata:
 	def __init__(self,spacecraft,sol):

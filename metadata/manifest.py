@@ -10,8 +10,8 @@ import json
 import requests
 
 # marsrover-pipline imports
-import mission.spacecraft as spacecraft
-import util
+import missions.spacecraft as spacecraft
+import metadata.util as util
 
 class Manifest:
 	def __init__(self, spacecraft):

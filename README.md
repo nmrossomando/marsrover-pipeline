@@ -39,3 +39,9 @@ It is a JSON file containing system-specific paths for the pipline. Example conf
 		}
 	}
 
+## Testing
+Each file in the repository is self-testing. Because of Python's limitiations on imports when running a file
+directly, however, you must run each, as a module, from the root directory. example:
+
+    marsrover-pipeline $ python3 -m metadata.manifest
+
