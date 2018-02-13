@@ -24,6 +24,8 @@ limitations under the License.
 *	Python 3 (Yes, 3. Python 2 is going to be dead very soon...)
 *	Python [Requests](http://docs.python-requests.org/en/master/)
 *	Python AWS SDK, [boto 3](https://aws.amazon.com/sdk-for-python/)
+*	Python OpenCV bindings, python-opencv (`sudo pip3 install opencv-python`)
+	*	The above will also install numpy, if it isn't already installed.
 
 ## Configuration
 marsrover-pipeline expects a config file in the user's home directory named `.marsroverio`.
