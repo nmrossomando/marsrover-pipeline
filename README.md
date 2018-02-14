@@ -29,16 +29,11 @@ limitations under the License.
 
 ## Configuration
 marsrover-pipeline expects a config file in the user's home directory named `.marsroverio`.
-It is a JSON file containing system-specific paths for the pipline. Example config:
+It is a JSON file containing system-specific paths for the pipeline. Example config:
 
 	{
-		"manifest_path" : {
-			"mera" : "/path/to/spirit/metadata/dir/",
-			"merb" : "/path/to/oppy/metadata/dir/",
-			"msl" : "/path/to/msl/metadata/dir/",
-			"m20" : "/path/to/m2020/metadata/dir/",
-			"nsyt" : "/path/to/nsyt/metadata/dir/"
-		}
+		"manifest_path" : "/path/to/metadata/dir/",
+		"images_path" : "/path/to/images/dir/"
 	}
 
 ## Testing

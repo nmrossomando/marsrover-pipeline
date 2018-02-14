@@ -22,7 +22,7 @@ class Manifest:
 
 		# Pull in locally cached image manifest here
 		conf = json.load(open(os.path.expanduser('~/.marsroverio'),'r'))
-		self.localMfPath = conf['manifest_path'][self.sc['mission']] + 'image_manifest.json'
+		self.localMfPath = conf['manifest_path'] + self.sc['mission'] + '/image_manifest.json'
 		self.localMf = json.load(open(self.localMfPath,'r'))
 
 	# Pull in the remote manifest

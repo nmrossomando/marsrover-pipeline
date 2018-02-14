@@ -13,9 +13,9 @@
 #
 
 # Library imports
+import os
 import json
 import requests
-import boto3
 import cv2
 import numpy as np
 
@@ -147,6 +147,58 @@ class Pancam:
 				partials.append(key)
 
 		return partials
+	
+	# Create a false color image using one filter for each channel.
+	# Usually this involves the L2, L5, and L7 filters, can occasionally be L456.
+	# Args are string filter identifier (i.e. "L2"); filters must be from same eye, left or right
+	# Will reject if different eyes or requested filters are unavailable (or partial).
+	# Returns True if image created and False otherwise; image added to obsImages dict.
+	def makeFalseColor(self,redFilter,greenFilter,blueFilter):
+		colorId = ""
+		# Check for same eye in all images, and set eye in ID if good.
+		if (redFilter[0] == greenFilter[0]) and (redFilter[0] == blueFilter[0]):
+			colorId = redFilter[0]
+		else:
+			return False
+
+		# Now check for existence and completeness of requested frames
+		if (redFilter not in self.obsImages) or (redFilter in self.checkPartialImages()):
+			return False
+		elif (greenFilter not in self.obsImages) or (greenFilter in self.checkPartialImages()):
+			return False
+		elif (blueFilter not in self.obsImages) or (blueFilter in self.checkPartialImages()):
+			return False
+		else:
+			# If all good, finish the identifier:
+			colorId = colorId + redFilter[1] + greenFilter[1] + blueFilter[1]
+
+		# Now for the easy part (yay OpenCV): Merge the images.
+		imArray = [self.obsImages[blueFilter], self.obsImages[greenFilter], self.obsImages[redFilter]] # Note: OpenCV uses BGR instead of RGB for some reason. "Legacy."
+		self.obsImages[colorId] = cv2.merge(imArray)
+
+		return True
+
+	# Cache generated images locally.
+	# Uses path in .marsroverio config file.
+	# Return True if success and False if failure
+	def saveGenObsImages(self):
+		conf = json.load(open(os.path.expanduser('~/.marsroverio'),'r'))
+		localImageDir = conf['images_path'] + self.sc['mission'] + '/' + str(self.sol) + '/'
+		# Check for directory's existence. If it doesn't exist, create.
+		if not os.path.isdir(localImageDir):
+			if os.path.isfile(localImageDir[:-1]): # Cut the '/' for this check
+				return False
+			else:
+				os.makedirs(localImageDir)
+
+		# Save images. Not the best algorithm to detect which are generated, but eh.
+		# This doesn't just look for a L257 so we can accomodate other color sets and future other products.
+		nonGen = self.getObsFilters(self.activeObs)
+		for key,val in self.obsImages.items():
+			if key not in nonGen:
+				cv2.imwrite(localImageDir + self.activeObs + key + '.jpg',val)
+
+		return True
 
 if __name__ == "__main__":
 	print("TESTING MODULE: pancam.py")
@@ -163,5 +215,9 @@ if __name__ == "__main__":
 	print(PC.getObsFilters('fake_id'))
 	print(PC.loadObsImages(oids[1]))
 	print(PC.checkPartialImages())
+	print(PC.makeFalseColor("L2","R2","L7"))
+	print(PC.makeFalseColor("R3","R2","R1"))
+	print(PC.makeFalseColor("L2","L5","L7"))
+	print(PC.saveGenObsImages())
 	print("DONE.")
 
